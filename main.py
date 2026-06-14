@@ -1,0 +1,1 @@
+print("my friend are retard")
