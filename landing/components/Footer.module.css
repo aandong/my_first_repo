@@ -1,0 +1,81 @@
+.footer {
+  padding: var(--space-12) 0 var(--space-8);
+  background: var(--surface-dark-sunken);
+  border-top: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.15);
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.logo {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--text-on-dark);
+}
+
+.copy {
+  font-size: var(--text-xs);
+  color: var(--text-on-dark-muted);
+}
+
+.nav {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.link {
+  font-size: var(--text-sm);
+  color: var(--text-on-dark-muted);
+  transition: color var(--duration-fast) var(--ease-out-quart);
+}
+
+.versionInfo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2) inset;
+}
+
+.versionLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--text-on-dark-muted);
+  letter-spacing: 0.04em;
+}
+
+.versionValue {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .inner {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .nav {
+    justify-content: center;
+  }
+}

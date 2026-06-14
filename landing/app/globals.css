@@ -1,0 +1,335 @@
+/* ============================================================
+   PROJECT ALPHA — Skeuomorphic Design System
+   Design tokens from design.md + real-world texture aesthetics
+   ============================================================ */
+
+/* --- Design Tokens --- */
+:root {
+  /* Colors */
+  --color-primary: #FA3C00;
+  --color-primary-dark: #C52F00;
+  --color-primary-light: #FF6B3D;
+  --color-secondary: #F08321;
+  --color-secondary-dark: #C06A1A;
+  --color-success: #16A34A;
+  --color-warning: #D97706;
+  --color-danger: #DC2626;
+
+  /* Surfaces — warm aluminum / brushed metal feel */
+  --surface-base: #E8E4DF;
+  --surface-raised: #F0ECE8;
+  --surface-sunken: #D5D0CA;
+  --surface-overlay: #FAFAF8;
+  --surface-dark: #1A1714;
+  --surface-dark-raised: #2A2520;
+  --surface-dark-sunken: #0F0D0B;
+
+  /* Text */
+  --text-primary: #111827;
+  --text-secondary: #4A4540;
+  --text-muted: #7A756E;
+  --text-on-primary: #FFFFFF;
+  --text-on-dark: #E8E4DF;
+  --text-on-dark-muted: #9A958E;
+
+  /* Typography Scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+  --text-3xl: clamp(2rem, 5vw, 3.5rem);
+  --text-4xl: clamp(2.5rem, 6vw, 4.5rem);
+
+  /* Spacing Scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+
+  /* Borders */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* Skeuomorphic Shadows */
+  --shadow-raised: 
+    0 1px 0 0 rgba(255,255,255,0.45) inset,
+    0 -1px 0 0 rgba(0,0,0,0.12) inset,
+    0 2px 4px rgba(0,0,0,0.15),
+    0 4px 8px rgba(0,0,0,0.08);
+  --shadow-pressed:
+    0 1px 2px rgba(0,0,0,0.2) inset,
+    0 0 0 1px rgba(0,0,0,0.08) inset;
+  --shadow-deep:
+    0 1px 0 0 rgba(255,255,255,0.3) inset,
+    0 8px 24px rgba(0,0,0,0.2),
+    0 4px 8px rgba(0,0,0,0.12);
+  --shadow-inset:
+    0 2px 6px rgba(0,0,0,0.18) inset,
+    0 1px 2px rgba(0,0,0,0.1) inset;
+  --shadow-emboss:
+    0 1px 0 rgba(255,255,255,0.5),
+    0 -1px 0 rgba(0,0,0,0.1);
+
+  /* Transitions */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+
+  /* Z-index Scale */
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal-backdrop: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+  --z-tooltip: 600;
+}
+
+/* --- Reset & Base --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-roboto), system-ui, sans-serif;
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--text-on-dark);
+  background-color: var(--surface-dark);
+  overflow-x: hidden;
+}
+
+/* Textured background for the whole page */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(250,60,0,0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(240,131,33,0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-germania), serif;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+p {
+  max-width: 68ch;
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* --- Skeuomorphic Utilities --- */
+
+/* Raised surface — like a physical button or card lifted off the page */
+.skeu-raised {
+  background: linear-gradient(
+    180deg,
+    var(--surface-dark-raised) 0%,
+    var(--surface-dark-sunken) 100%
+  );
+  box-shadow: var(--shadow-raised);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius-lg);
+}
+
+/* Sunken surface — recessed into the page like an input field */
+.skeu-sunken {
+  background: var(--surface-dark-sunken);
+  box-shadow: var(--shadow-inset);
+  border: 1px solid rgba(0,0,0,0.25);
+  border-radius: var(--radius-md);
+}
+
+/* Primary CTA button — real tactile press */
+.skeu-btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  font-family: var(--font-roboto), system-ui, sans-serif;
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-on-primary);
+  background: linear-gradient(180deg, var(--color-primary-light) 0%, var(--color-primary) 50%, var(--color-primary-dark) 100%);
+  border: 1px solid var(--color-primary-dark);
+  border-radius: var(--radius-md);
+  box-shadow:
+    0 1px 0 0 rgba(255,255,255,0.25) inset,
+    0 -1px 0 0 rgba(0,0,0,0.2) inset,
+    0 3px 8px rgba(250,60,0,0.35),
+    0 1px 2px rgba(0,0,0,0.2);
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.3);
+  transition: 
+    box-shadow var(--duration-fast) var(--ease-out-quart),
+    transform var(--duration-fast) var(--ease-out-quart);
+}
+
+.skeu-btn-primary:hover {
+  box-shadow:
+    0 1px 0 0 rgba(255,255,255,0.3) inset,
+    0 -1px 0 0 rgba(0,0,0,0.2) inset,
+    0 6px 20px rgba(250,60,0,0.45),
+    0 2px 4px rgba(0,0,0,0.25);
+  transform: translateY(-1px);
+}
+
+.skeu-btn-primary:active {
+  box-shadow:
+    0 1px 3px rgba(0,0,0,0.3) inset,
+    0 0 0 1px rgba(0,0,0,0.15) inset;
+  transform: translateY(1px);
+  background: linear-gradient(180deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+}
+
+.skeu-btn-primary:focus-visible {
+  outline: 2px solid var(--color-primary-light);
+  outline-offset: 3px;
+}
+
+/* Secondary/Ghost button */
+.skeu-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  font-family: var(--font-roboto), system-ui, sans-serif;
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--text-on-dark);
+  background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-md);
+  box-shadow:
+    0 1px 0 0 rgba(255,255,255,0.06) inset,
+    0 1px 3px rgba(0,0,0,0.2);
+  transition: 
+    background var(--duration-fast) var(--ease-out-quart),
+    border-color var(--duration-fast) var(--ease-out-quart),
+    transform var(--duration-fast) var(--ease-out-quart);
+}
+
+.skeu-btn-ghost:hover {
+  background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.04) 100%);
+  border-color: rgba(255,255,255,0.2);
+  transform: translateY(-1px);
+}
+
+.skeu-btn-ghost:active {
+  transform: translateY(1px);
+  box-shadow: var(--shadow-pressed);
+}
+
+.skeu-btn-ghost:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/* Badge — physical sticker look */
+.skeu-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px var(--space-2);
+  font-family: var(--font-mono), monospace;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-on-primary);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  border-radius: var(--radius-sm);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.2) inset,
+    0 1px 3px rgba(0,0,0,0.3);
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+/* Section spacing */
+.section {
+  padding: var(--space-24) 0;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- Scrollbar Styling --- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface-dark-sunken);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.15);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.25);
+}

@@ -1,0 +1,168 @@
+.status {
+  position: relative;
+}
+
+.sectionTitle {
+  font-family: 'Germania One', serif;
+  font-size: var(--text-3xl);
+  color: var(--text-on-dark);
+  text-align: center;
+  margin-bottom: var(--space-12);
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  margin-bottom: var(--space-12);
+}
+
+.trackBg {
+  height: 4px;
+  background: rgba(255,255,255,0.08);
+  border-radius: var(--radius-full);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3) inset;
+  position: relative;
+  margin: 0 40px;
+}
+
+.trackFill {
+  position: absolute;
+  inset: 0;
+  width: 48%;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 12px rgba(250,60,0,0.3);
+}
+
+.milestones {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--space-6);
+  padding: 0 8px;
+}
+
+.milestone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  flex: 1;
+}
+
+.markerOuter {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-dark);
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 
+    0 2px 6px rgba(0,0,0,0.3),
+    0 1px 0 rgba(255,255,255,0.05) inset;
+}
+
+.complete .markerOuter {
+  border-color: var(--color-success);
+  background: linear-gradient(180deg, #1A3A24 0%, #0F2418 100%);
+}
+
+.active .markerOuter {
+  border-color: var(--color-primary);
+  background: linear-gradient(180deg, #3A1A10 0%, #200D06 100%);
+  box-shadow: 
+    0 0 16px rgba(250,60,0,0.3),
+    0 2px 6px rgba(0,0,0,0.3),
+    0 1px 0 rgba(255,255,255,0.05) inset;
+}
+
+.marker {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-on-dark-muted);
+}
+
+.complete .marker { color: var(--color-success); }
+.active .marker { color: var(--color-primary); font-size: 10px; }
+
+.milestoneLabel {
+  font-family: var(--font-roboto), system-ui, sans-serif;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-on-dark-muted);
+  text-align: center;
+}
+
+.complete .milestoneLabel { color: var(--text-on-dark); }
+.active .milestoneLabel { color: var(--color-primary); }
+
+.milestoneDate {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  color: var(--text-on-dark-muted);
+}
+
+/* Stats Grid */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-4);
+}
+
+.statCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-6) var(--space-4);
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius-lg);
+  box-shadow: 
+    0 2px 4px rgba(0,0,0,0.15) inset,
+    0 -1px 0 rgba(255,255,255,0.04);
+  opacity: 0; /* GSAP reveals */
+}
+
+.statIcon {
+  font-size: var(--text-sm);
+  color: var(--color-primary);
+  opacity: 0.6;
+}
+
+.statValue {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--text-on-dark);
+  letter-spacing: -0.02em;
+}
+
+.statLabel {
+  font-size: var(--text-sm);
+  color: var(--text-on-dark-muted);
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .milestones {
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    justify-content: center;
+  }
+
+  .milestone {
+    flex: unset;
+    width: 80px;
+  }
+
+  .trackBg {
+    display: none;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
